@@ -15,6 +15,7 @@ const buyerSchema = new mongoose.Schema({
 	},
 	carbonNeeded: {
 		type: Number,
+		default: 0,
 		required: true,
 	},
 	purchasedProjects: [
