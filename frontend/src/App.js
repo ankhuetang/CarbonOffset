@@ -4,6 +4,9 @@ import logo from './logo.svg';
 import './App.css';
 import CalculatorPage from './CalculatorPage';
 import ProjectPage from './ProjectPage';
+import market from './market';
+import MarketsPage from './market';
+
 
 function App() {
   return (
@@ -22,11 +25,13 @@ function App() {
           <div className="pr-8 md:block hidden">
             <a href="/projects" className="p-4">Projects</a>
             <a href="/" className="p-4">Calculator</a>
+            <a href="/market" className="p-4">Calculator</a>
           </div>
         </nav>
         <Routes>
           <Route path="/" element={<CalculatorPage />} />
           <Route path="/projects" element={<ProjectPage />} />
+          <Route path="/market" element={<MarketsPage />} />
         </Routes>
       </BrowserRouter>
 
