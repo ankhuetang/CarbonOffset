@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+app.use('/projects', projectRoutes);
+
 mongoURI =
 	'mongodb+srv://CarbonOffset:CarbonOffset@carbonoffset.fr7kjux.mongodb.net/?retryWrites=true&w=majority';
 mongoose
