@@ -136,13 +136,21 @@ def get_highest_bid_and_lowest_ask():
         return str(e), 400
 
 
-
 # Get all carbon credit projects
 @app.route('/carboncreditprojects', methods=['GET'])
 def get_carboncreditprojects():
     try:
         carboncreditprojects = CarbonCreditProject.objects().to_json()
         return carboncreditprojects, 200
+    except Exception as e:
+        return str(e), 400
+    
+# Get a specific carbon credit project
+@app.route('/carboncreditprojects/<id>', methods=['GET'])
+def get_carboncreditproject(id):
+    try:
+        carboncreditproject = CarbonCreditProject.objects.get(id=id).to_json()
+        return carboncreditproject, 200
     except Exception as e:
         return str(e), 400
 
@@ -155,6 +163,7 @@ def create_carboncreditproject():
         return carboncreditproject.to_json(), 201
     except Exception as e:
         return str(e), 400
+
 
 
 
