@@ -17,6 +17,7 @@ class Ask(Document):
 
 
 class CarbonCreditProject(Document):
+    img_url = StringField(required=True)
     name = StringField(required=True)
     price = FloatField(required=True)
     quantity = IntField(required=True)
