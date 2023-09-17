@@ -44,7 +44,7 @@ const Navbar = () => {
         <a href='/calculator' className='p-4 text-white'>
           Calculator
         </a>
-        <a href='/market' className='p-4 text-white'>
+        <a href='/portfolio' className='p-4 text-white'>
           Portfolio
         </a>
       </div>
