@@ -15,6 +15,10 @@ const projectSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+	quality: {
+		type: Number,
+		required: true,
+	},
 });
 
 const Project = mongoose.model('Project', projectSchema);
