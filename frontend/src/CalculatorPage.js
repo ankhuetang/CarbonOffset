@@ -19,41 +19,39 @@ import {
     PolarRadiusAxis,
 } from 'recharts';
 
-
 const CalculatorPage = () => {
     const [carbonFields, setCarbonFields] = useState([
         {
             name: 'CO2',
             imagePath: 'https://cdn-icons-png.flaticon.com/128/3222/3222073.png',
-            carbonCost: 20,
-            quantity: 1,
+            carbonCost: 1,
+            quantity: 56,
         },
         {
             name: 'Methane',
             imagePath: 'https://st4.depositphotos.com/1000783/38128/v/450/depositphotos_381282746-stock-illustration-methane-cloud-vector-illustration.jpg',
-            carbonCost: 32,
-            quantity: 1,
+            carbonCost: 28.5,
+            quantity: 12,
         },
         {
             name: 'Nitrous Oxide',
             imagePath: 'https://static.thenounproject.com/png/4476292-200.png',
-            carbonCost: 29,
-            quantity: 1,
+            carbonCost: 273,
+            quantity: 4,
         },
         {
             name: 'Perfluorocarbons',
             imagePath: 'https://www.modinecoolers.com/wp-content/uploads/2020/02/PFC_icon.png',
-            carbonCost: 50,
-            quantity: 1,
+            carbonCost: 6630,
+            quantity: 0.1,
         },
         {
             name: 'Sulfur Hexafluoride',
-            imagePath: 'https://www.westairgases.com/hs-fs/hub/353433/file-1989767499-png/images/GasSymbols/SF6.png',
-            carbonCost: 40,
-            quantity: 1,
+            imagePath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Sulfur-hexafluoride-3D-balls.png/640px-Sulfur-hexafluoride-3D-balls.png',
+            carbonCost: 25200,  
+            quantity: 0.01,
         },
     ]);
-
 
     const [total, setTotal] = useState(0);
     const [totalCreditsBought, setTotalCreditsBought] = useState(0);
@@ -70,53 +68,44 @@ const CalculatorPage = () => {
             companyName: 'Salt Lake Windmill',
             creditsBought: 300,
         },
-        // Add more companies as needed
     ]);
-
 
     useEffect(() => {
         const newTotal = carbonFields.reduce((acc, item) => acc + item.carbonCost * item.quantity, 0);
         setTotal(newTotal);
     }, [carbonFields]);
 
-
     useEffect(() => {
         const creditsBought = individualCreditsBought.reduce((acc, item) => acc + item.creditsBought, 0);
         setTotalCreditsBought(creditsBought);
     }, [individualCreditsBought]);
 
-
     const handleQuantityChange = (index, newValue) => {
         if (!isNaN(newValue) && newValue >= 0) {
             const floatValue = Number(newValue);
             const updatedCarbonFields = [...carbonFields];
-            updatedCarbonFields[index].quantity = floatValue; // Assign the newValue directly
+            updatedCarbonFields[index].quantity = floatValue;
             setCarbonFields(updatedCarbonFields);
         }
     };
 
-
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
 
     const pieChartData = carbonFields.map((carbonField) => ({
         name: carbonField.name,
         value: carbonField.carbonCost * carbonField.quantity,
     }));
 
-
     const barChartData = carbonFields.map((carbonField) => ({
         name: carbonField.name,
         uv: carbonField.carbonCost * carbonField.quantity,
     }));
-
 
     const radarChartData = carbonFields.map((carbonField) => ({
         subject: carbonField.name,
         A: carbonField.carbonCost * carbonField.quantity,
         fullMark: 3.0,
     }));
-
 
     return (
         <main className="h-screen flex">
@@ -127,26 +116,29 @@ const CalculatorPage = () => {
                         {carbonFields.map((carbonField, index) => (
                             <div key={index} className="flex flex-row items-center mb-4">
                                 <img className="w-16 h-16 mr-4 rounded-lg" src={carbonField.imagePath} alt={carbonField.name} />
-                                <div className="flex flex-col">
+                                <div className="flex flex-col w-full">
                                     <div className="flex flex-row items-center">
                                         <h2 className="text-lg font-semibold mr-4">{carbonField.name}</h2>
                                     </div>
-                                    <div className="flex flex-row items-center">
+                                    <div className="flex flex-row items-center space-x-4">
                                         <input
                                             type="number"
                                             id={`quantityInput-${index}`}
                                             placeholder="Quantity"
                                             value={carbonField.quantity}
                                             onChange={(e) => handleQuantityChange(index, e.target.value)}
-                                            className="w-16 p-2 border rounded-lg"
+                                            className="w-24 p-2 border rounded-lg"
                                         />
+                                        <span className="text-sm text-gray-600">
+                                            tons × {carbonField.carbonCost} GWP = {(carbonField.quantity * carbonField.carbonCost).toFixed(2)} CO₂e
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                     <div>
-                        <h2 className="text-lg font-semibold mt-4">Total: {total.toFixed(2)} Tons</h2>
+                        <h2 className="text-lg font-semibold mt-4">Total CO₂ Equivalent: {total.toFixed(2)} Tons CO₂e</h2>
                     </div>
                 </div>
                 <div className="bg-white shadow-md rounded-md p-8 mt-8">
@@ -220,8 +212,4 @@ const CalculatorPage = () => {
     );
 };
 
-
 export default CalculatorPage;
-
-
-
