@@ -35,8 +35,8 @@ function createData(
 }
 
 const dummyGLData = [
-	createData('AAPL', 150.0, 155.0, 149.0, 148.5, 153.0, 2.0, 1000, 150000),
-	createData('GOOG', 2700.0, 2750.0, 2695.0, 2690.0, 2745.0, 1.9, 800, 220000),
+	createData('Utah Solar', 150.0, 155.0, 149.0, 148.5, 153.0, 2.0, 1000, 150000),
+	createData('Jaipur Wind Co.', 2700.0, 2750.0, 2695.0, 2690.0, 2745.0, 1.9, 800, 220000),
 	// Add more sample data entries as needed
 ];
 
@@ -108,7 +108,7 @@ export default function GLTable({ type, refreshGL, setRefreshGL }) {
 						<TableCell align='right'>LTP</TableCell>
 						<TableCell align='right'>%CHNG</TableCell>
 						<TableCell align='right'>{`VOLUME (shares)`}</TableCell>
-						<TableCell align='right'>{`VALUE (₹ Lakhs) `}</TableCell>
+						<TableCell align='right'>{`VALUE (USD) `}</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
