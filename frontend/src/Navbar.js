@@ -42,7 +42,7 @@ const Navbar = () => {
           Projects
         </a>
         <a href='/calculator' className='p-4 text-white'>
-          Calculator
+          Model
         </a>
         <a href='/portfolio' className='p-4 text-white'>
           Portfolio

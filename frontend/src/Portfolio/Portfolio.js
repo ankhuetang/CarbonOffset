@@ -62,7 +62,12 @@ import moment from 'moment';
 
 export default function Dashboard() {
   const [projects, setProjects] = useState([]);
-  const [possessions, setPossessions] = useState([]);
+  const [possessions, setPossessions] = useState([
+    { 'company': "Jaipur Co", 'price': "$20.47", 'projectName': 'Jaipur Solar Farm Lot #427' },
+    { 'company': "Utah Green Ltd.", 'price': "$49.64", 'projectName': 'Salt Lake Windmill Mfg Center' },
+    { 'company': "National Windmill Corp.", 'price': "$118.87", 'projectName': 'National Windmill Mfg CT Center' },
+    { 'company': "Hydro LLC", 'price': "$77.89", 'projectName': 'Connecticut River Dam Turbine Center 2' }
+  ]);
   const [type, setType] = useState('gainers');
   const [refreshGL, setRefreshGL] = useState(false);
   
@@ -70,36 +75,36 @@ export default function Dashboard() {
 
   const apiUrl = 'http://127.0.0.1:5000/'
   
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(apiUrl + '/carboncreditprojects');
-        const data = await response.json();
-        setProjects(data);
-      } catch (error) {
-        console.error('Failed to fetch projects', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const response = await fetch(apiUrl + '/carboncreditprojects');
+  //       const data = await response.json();
+  //       setProjects(data);
+  //     } catch (error) {
+  //       console.error('Failed to fetch projects', error);
+  //     }
+  //   };
     
-    const fetchPossessions = async () => {
-      try {
-        const response = await fetch(apiUrl + '/users/possessions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ user_id: userId }),
-        });
-        const data = await response.json();
-        setPossessions(data);
-      } catch (error) {
-        console.error('Failed to fetch possessions', error);
-      }
-    };
+  //   const fetchPossessions = async () => {
+  //     try {
+  //       const response = await fetch(apiUrl + '/users/possessions', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ user_id: userId }),
+  //       });
+  //       const data = await response.json();
+  //       setPossessions(data);
+  //     } catch (error) {
+  //       console.error('Failed to fetch possessions', error);
+  //     }
+  //   };
     
-    fetchProjects();
-    fetchPossessions();
-  }, [userId]);
+  //   fetchProjects();
+  //   fetchPossessions();
+  // }, [userId]);
 
 
 
